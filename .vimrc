@@ -397,7 +397,7 @@ au BufRead,BufNewFile *.sls set filetype=yaml
 " Tidy for JSON
 " ============================
 au BufRead,BufNewFile *.json set filetype=json foldmethod=syntax
-au FileType json command -range=% -nargs=* Tidy <line1>,<line2>! json_xs -f json -t json-pretty
+au FileType json command! -range=% -nargs=* Tidy <line1>,<line2>! json_xs -f json -t json-pretty
 
 " ============================
 " Tabularize - alignment
