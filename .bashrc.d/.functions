@@ -43,12 +43,19 @@ function gurl() {
 
 # Syntax-highlight JSON strings or files
 function json() {
+  # check to see if pygments is installed
+  local _pipes="" 
+  if hash pygments 2>/dev/null; then
+    local _pipes="| pygmentize -l json | less -R" 
+  else
+    echo "install Pygments and pygments-json for colorized output"
+  fi
 	if [ -p /dev/stdin ]; then
 		# piping, e.g. `echo '{"foo":42}' | json`
-		python -mjson.tool
+		python -mjson.tool $_pipes
 	else
 		# e.g. `json '{"foo":42}'`
-		python -mjson.tool <<< "$*"
+		python -mjson.tool <<< "$*" $_pipes
 	fi
 }
 
