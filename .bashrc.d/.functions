@@ -45,10 +45,10 @@ function gurl() {
 function json() {
 	if [ -p /dev/stdin ]; then
 		# piping, e.g. `echo '{"foo":42}' | json`
-		python -mjson.tool | pygmentize -l javascript
+		python -mjson.tool
 	else
 		# e.g. `json '{"foo":42}'`
-		python -mjson.tool <<< "$*" | pygmentize -l javascript
+		python -mjson.tool <<< "$*"
 	fi
 }
 
@@ -91,7 +91,7 @@ function tempramp(){
 # First param is where to connect to , second param is what session to use
 function tssh (){
  if [ -z "$2" ]; then                     # Is parameter #1 zero length?
-   local __session="default" 
+   local __session="default"
  else
    local __session=$2
  fi
