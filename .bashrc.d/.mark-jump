@@ -2,6 +2,9 @@ export MARKPATH=$HOME/.marks
 function jump {
     cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
 }
+
+alias j=jump
+
 function mark {
     mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
 }
@@ -18,11 +21,18 @@ function marks {
 }
 
 # Autocompletion for BASH
-_completemarks() {
+
+function _completemarks() {
   local curw=${COMP_WORDS[COMP_CWORD]}
-  local wordlist=$(find $MARKPATH -type l -printf "%f\n")
+  case $OSTYPE in
+    linux* )
+      local wordlist=$(find $MARKPATH -type l -printf "%f\n") ;;
+    darwin* )
+      local wordlist=$(find $MARKPATH/. -type l | awk -F '/' '{print $NF}') ;;
+  esac
   COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
   return 0
 }
 
 complete -F _completemarks jump unmark
+complete -F _completemarks j unmark
