@@ -1,6 +1,6 @@
 source ~/.bashrc.d/.git-completion.sh
 source ~/.bashrc.d/.git-prompt.sh
-source ~/.bashrc.d/.mark-jump.sh
+source ~/.bashrc.d/.mark-jump
 source ~/.bashrc.d/.functions
 
 PRODUCTION_PS1='1'
