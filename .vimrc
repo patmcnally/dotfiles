@@ -16,6 +16,16 @@ let mapleader = ","
   call pathogen#infect()
   call pathogen#helptags()
 
+" === Vundle ==="
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'joonty/vim-phpunitqf.git'
+
+
 " ================ General Config ====================
 
 set relativenumber              "Line numbers are good
