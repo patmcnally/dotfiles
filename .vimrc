@@ -425,6 +425,11 @@ nmap sk :SplitjoinJoin<cr>
 
 nmap <Leader>r :Scratch
 
+"=============================
+" Ctrlp Config
+"=============================
+nmap <Leader>p :CtrlP<CR>
+
 
 " ============================
 " Strip Trailing Whitespaces
