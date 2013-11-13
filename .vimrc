@@ -24,7 +24,7 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 Bundle 'joonty/vim-phpunitqf.git'
-
+Bundle 'bling/vim-airline'
 
 " ================ General Config ====================
 
@@ -546,6 +546,11 @@ nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 " ==============================
 " let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
+" ==============================
+" Airline
+" ==============================
+let g:airline_powerline_fonts = 1
+
 
 " End Matter
 
@@ -560,6 +565,8 @@ let g:vimclojure#HighlightBuiltins = 1
 let g:vimclojure#ParenRainbow = 1
 let vimclojure#WantNailgun = 0
 
-:colorscheme ir_black
 
+set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline
 
+colorscheme base16-default
+set background=dark
