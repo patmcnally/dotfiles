@@ -1,11 +1,19 @@
-# Create a new directory and enter it
+# markdown and show in browser
 function md() {
-	mkdir -p "$@" && cd "$@"
+  pandoc --from markdown+definition_lists --to html --standalone $1 | bcat
+}
+
+function markdown(){
+  pandoc --from markdown --to html --standalone $1
+}
+
+function phpcs_a(){
+  phpcs --extensions=php --standard=/var/www/html/announcemedia/dev_tools/php_codesniffer/Standards/Answers $1
 }
 
 # Search recursively for a pattern
 function grepr(){
-    grep -r $1 *
+    grep -Fr $1 *
 }
 
 # Use Git’s colored diff when available
@@ -45,7 +53,7 @@ function gurl() {
 function json() {
   # check to see if pygments is installed
   local _pipes="" 
-  if hash pygments 2>/dev/null; then
+  if hash pygmentize 2>/dev/null; then
     local _pipes="| pygmentize -l json | less -R" 
   else
     echo "install Pygments and pygments-json for colorized output"

@@ -3,8 +3,6 @@ source ~/.bashrc.d/.git-prompt.sh
 source ~/.bashrc.d/.mark-jump
 source ~/.bashrc.d/.functions
 
-PRODUCTION_PS1='1'
-
 export PATH=$PATH:$HOME/bin
 export CLICOLOR=1
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
