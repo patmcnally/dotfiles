@@ -551,6 +551,23 @@ nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 " ==============================
 let g:airline_powerline_fonts = 1
 
+" ==============================
+" Nimrod
+" ==============================
+fun! JumpToDef()
+  if exists("*GotoDefinition_" . &filetype)
+    call GotoDefinition_{&filetype}()
+  else
+    exe "norm! \<C-]>"
+  endif
+endf
+
+" Jump to tag
+nn [<C-D> :call JumpToDef()<cr>
+ino [<C-D> <esc>:call JumpToDef()<cr>i
+" ==============================
+" END Nimrod
+" ==============================
 
 " End Matter
 
