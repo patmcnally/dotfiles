@@ -568,5 +568,5 @@ let vimclojure#WantNailgun = 0
 
 set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline
 
-colorscheme base16-default
+colorscheme base16-monokai
 set background=dark
