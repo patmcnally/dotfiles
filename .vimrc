@@ -82,7 +82,6 @@ set smarttab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set expandtab
 
 filetype plugin on
 filetype indent on
@@ -129,11 +128,12 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 36
 let NERDTreeIgnore = ['\.git$']
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 
 " =============== fugitive.git
 " For fugitive.git, dp means :diffput. Define dg to mean :diffget
-nnoremap <silent> ,dg :diffget<CR>
-nnoremap <silent> ,dp :diffput<CR>
+nnoremap <silent> <leader>dg :diffget<CR>
+nnoremap <silent> <leader>dp :diffput<CR>
 
 
 
@@ -253,20 +253,8 @@ nnoremap ,. '.
 " put the cursor right after the quote
 imap <C-a> <esc>wa
 
-" ==== CtrlP
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-
-" Default to filename searches - so that appctrl will find application
-" controller
-let g:ctrlp_by_filename = 1
-
-" We don't want to use Ctrl-p as the mapping because
-" it interferes with YankRing (paste, then hit ctrl-p)
-let g:ctrlp_map = ',t'
-nnoremap <silent> ,t :CtrlPMixed<CR>
-
 " ==== NERD tree
-" Cmd-Shift-N for nerd tree
+" CTRL-Shift-N for nerd tree
 nmap <D-N> :NERDTreeToggle<CR>
 
 " ,q to toggle quickfix window (where you have stuff like GitGrep)
@@ -428,8 +416,12 @@ nmap <Leader>r :Scratch
 "=============================
 " Ctrlp Config
 "=============================
-nmap <Leader>p :CtrlP<CR>
 
+" We don't want to use Ctrl-p as the mapping because
+" it interferes with YankRing (paste, then hit ctrl-p)
+let g:ctrlp_map = ',p'
+nmap <Leader>p :CtrlPMixed<CR>
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " ============================
 " Strip Trailing Whitespaces
@@ -568,6 +560,26 @@ ino [<C-D> <esc>:call JumpToDef()<cr>i
 " ==============================
 " END Nimrod
 " ==============================
+
+
+
+" ==============================
+" TagList
+" ==============================
+nnoremap <leader>y :Tlist<CR>
+" set the names of flags
+let tlist_php_settings = 'php;c:class;f:function;d:constant'
+" close all folds except for current file
+let Tlist_File_Fold_Auto_Close = 1
+" make tlist pane active when opened
+let Tlist_GainFocus_On_ToggleOpen = 1
+" width of window
+let Tlist_WinWidth = 40
+" ==============================
+" END TagList
+" ==============================
+
+
 
 " End Matter
 
