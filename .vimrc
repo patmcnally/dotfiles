@@ -566,7 +566,7 @@ ino [<C-D> <esc>:call JumpToDef()<cr>i
 " ==============================
 " TagList
 " ==============================
-nnoremap <leader>y :Tlist<CR>
+nnoremap <leader>y :TagbarToggle<CR>
 " set the names of flags
 let tlist_php_settings = 'php;c:class;f:function;d:constant'
 " close all folds except for current file
