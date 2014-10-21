@@ -1,0 +1,78 @@
+# This function and the next, combined with the "complete" line below offer the
+# ability to type modules resu[tab] to autocomplete to results.  Hitting enter will take
+# you from anywhere to the results folder inside modules (typing just modules takes u to the base)
+modules()
+{
+	local projdir=/var/www/html/announcemedia/rubix_modules
+	cd "$projdir/$1"
+}
+
+_modules()
+{
+	local cur prev projdir=/var/www/html/announcemedia/rubix_modules
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[$COMP_CWORD]}
+    prev=${COMP_WORDS[COMP_CWORD-1]}
+
+    COMPREPLY=( $( compgen -W '$( ls $projdir/ | grep $cur | sed "s|$projdir/||")' -- '' ) )
+}
+
+# This function and the next, combined with the "complete" line below offer the
+# ability to type site stay[tab] to autocomplete to stayingfit.com.  Hitting enter will take
+# you from anywhere to the stayingfit.com folder  (typing just site takes u to the base)
+site()
+{
+	local projdir=/var/www/html/announcemedia
+	cd "$projdir/$1"
+}
+
+_site()
+{
+	local cur prev projdir=/var/www/html/announcemedia
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[$COMP_CWORD]}
+    prev=${COMP_WORDS[COMP_CWORD-1]}
+
+    COMPREPLY=( $( compgen -W '$( ls $projdir/ | grep $cur | sed "s|$projdir/||")' -- '' ) )
+}
+
+models()
+{
+	local projdir=/var/www/html/announcemedia/rubix_models
+	cd "$projdir/$1"
+}
+
+_models()
+{
+	local cur prev projdir=/var/www/html/announcemedia/rubix_models
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[$COMP_CWORD]}
+    prev=${COMP_WORDS[COMP_CWORD-1]}
+
+    COMPREPLY=( $( compgen -W '$( ls $projdir/ | grep $cur | sed "s|$projdir/||")' -- '' ) )
+}
+
+views()
+{
+	local projdir=/var/www/html/announcemedia/rubix_views
+	cd "$projdir/$1"
+}
+
+_views()
+{
+	local cur prev projdir=/var/www/html/announcemedia/rubix_views
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[$COMP_CWORD]}
+    prev=${COMP_WORDS[COMP_CWORD-1]}
+
+    COMPREPLY=( $( compgen -W '$( ls $projdir/ | grep $cur | sed "s|$projdir/||")' -- '' ) )
+}
+
+complete -F _site site
+complete -F _modules modules
+complete -F _views views
+complete -F _models models

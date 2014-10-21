@@ -1,4 +1,5 @@
 source ~/.bashrc.d/.git-completion.sh
+source ~/.bashrc.d/.git-alias-completion.sh
 source ~/.bashrc.d/.git-prompt.sh
 source ~/.bashrc.d/.mark-jump
 source ~/.bashrc.d/.functions

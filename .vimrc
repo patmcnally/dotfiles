@@ -259,7 +259,6 @@ nmap <D-N> :NERDTreeToggle<CR>
 
 " ,q to toggle quickfix window (where you have stuff like GitGrep)
 " ,oq to open it back up (rare)
-nmap <silent> ,qc :CloseSingleConque<CR>:cclose<CR>
 nmap <silent> ,qo :copen<CR>
 
 " move up/down quickly by using Cmd-j, Cmd-k
@@ -277,13 +276,6 @@ nnoremap <silent> <C-\> :NERDTreeFind<CR>
 " Command-/ to toggle comments
 map <D-/> :TComment<CR>
 imap <D-/> <Esc>:TComment<CR>i
-
-"GitGrep - open up a git grep line, with a quote started for the search
-nnoremap ,gg :GitGrep ""<left>
-"GitGrep Current Partial
-nnoremap ,gcp :GitGrepCurrentPartial<CR>
-"GitGrep Current File
-nnoremap ,gcf :call GitGrep(expand("%:t:r"))<CR>
 
 " hit ,f to find the definition of the current class
 " this uses ctags. the standard way to get this is Ctrl-]
@@ -567,6 +559,8 @@ ino [<C-D> <esc>:call JumpToDef()<cr>i
 " TagList
 " ==============================
 nnoremap <leader>y :TagbarToggle<CR>
+let g:tagbar_type_javascript = { 'ctagsbin' : '/usr/local/bin/jsctags'  }
+
 " set the names of flags
 let tlist_php_settings = 'php;c:class;f:function;d:constant'
 " close all folds except for current file
@@ -594,6 +588,8 @@ let g:vimclojure#HighlightBuiltins = 1
 let g:vimclojure#ParenRainbow = 1
 let vimclojure#WantNailgun = 0
 
+" The Answers tabs
+set list listchars=tab:→\ ,trail:·
 
 set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline
 
