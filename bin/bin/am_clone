@@ -1,0 +1,15 @@
+#! /bin/bash
+pushd .
+cd /var/www/html/announcemedia
+
+path=$1
+path_array=(${path//\// })
+path_array_length=${#path_array[@]}
+last_position=$((path_array_length - 1))
+if [ $path_array_length -gt 1 ]
+then
+	cd ${path_array[0]}
+fi
+last_part=${path_array[$last_position]}
+git clone git@git.answers.com:$last_part
+popd

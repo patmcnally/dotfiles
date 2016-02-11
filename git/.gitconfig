@@ -1,0 +1,48 @@
+[alias]
+branchdate = "for k in `git branch | perl -pe s/^..//`; do echo -e `git show --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset\" $k -- | head -n 1`\\t$k; done | sort -r"
+
+
+[alias]
+  branchdate = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    # one-line log
+  l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  a = add
+  cm = commit -m
+  s = status -s
+  co = checkout
+  cob = checkout -b
+  # list branches sorted by last modified
+  b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+  d = diff
+  # list aliases
+  la = "!git config -l | grep alias | cut -c 7-"
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+  interactive = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  editor = vim
+[user]
+  name = patrick.mcnally
+  email = patrick.mcnally@answers.com
+[push]
+  default = simple

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+usage()
+{
+cat << EOF
+usage: $0 [interface]
+where 'interface' is either 'wireless', 'wi-fi', 'wifi', or 'ethernet'.
+EOF
+}
+
+case $1 in
+  -h | --help | -\?)
+  usage
+  exit 0      # This is not an error, User asked help. Don't do "exit 1"
+  ;;
+  wireless | wi-fi | wifi)
+  INTERFACE="Wi-Fi"
+  ;;
+  ethernet | lan)
+  INTERFACE="Ethernet"
+  ;;
+esac
+
+if [[ -z "$INTERFACE" ]]; then
+  usage
+  exit 0
+fi
+
+
+IFACE=`networksetup -listallhardwareports | grep $INTERFACE -A1 | grep -o 'en.'`
+ifconfig $IFACE | grep 'inet\s' | awk '{ print $2}'
