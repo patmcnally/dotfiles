@@ -15,9 +15,6 @@ export DISPLAY=:0.0
 # Aliases
 alias ls="ls -G"
 
-# Setup FASD
-eval "$(fasd --init auto)"
-alias v='f -e vim' # quick opening files with vim
 
 function color_my_prompt {
     # Define some colors for use to use
@@ -49,3 +46,6 @@ function color_my_prompt {
 }
 color_my_prompt
 
+# Setup FASD
+eval "$(fasd --init auto)"
+alias v='f -e vim' # quick opening files with vim
