@@ -1,0 +1,21 @@
+repo=$(git rev-parse --show-toplevel);
+repo="${repo/\/Volumes\/CODE\//}";
+repo="${repo/\/var\/www\/html\/announcemedia\//}";
+branch=`git rev-parse --abbrev-ref HEAD`;
+if [ "$branch" == "HEAD" ]; then
+	branch="";
+else
+	branch="(BRANCH: $branch)";
+fi;
+deploy="# $(basename "$repo") $branch";
+nl="
+";
+if [ ${repo:0:15} == "sql_deployments" ]; then
+	deploy="$deploy${nl}cd /var/www/html/announcemedia/$repo;${nl}sudo gitsqldeploy $(git rev-parse HEAD);";
+elif [ ${repo} == "server_configs" ]; then
+	deploy="$deploy${nl}cd /var/www/html/announcemedia/$repo;${nl}sudo gitswitch $(git rev-parse HEAD);${nl}# restart apache${nl}sudo /etc/init.d/httpd reload;";
+else
+	deploy="$deploy${nl}cd /var/www/html/announcemedia/$repo;${nl}sudo gitswitch $(git rev-parse HEAD);";
+fi;
+echo "$deploy" | pbcopy;
+printf "${deploy}\n";
