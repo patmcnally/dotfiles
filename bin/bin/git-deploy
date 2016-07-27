@@ -1,13 +1,34 @@
+#!/bin/bash
+
+# Description:
+#
+#	Makes the deploy instructions for this repo + branch.
+#
+#	- Copies to clipboard.
+#	- Updates the jira ticket, if kathy-cli exists.
+
+# Synopsis:
+#
+#	git-deploy <ticket>
+#
+#	- You may supply a ticket as the first arg, to override where in jira to update.
+
 repo=$(git rev-parse --show-toplevel);
 repo="${repo/\/Volumes\/CODE\//}";
 repo="${repo/\/var\/www\/html\/announcemedia\//}";
 branch=`git rev-parse --abbrev-ref HEAD`;
 if [ "$branch" == "HEAD" ]; then
-	branch="";
-else
-	branch="(BRANCH: $branch)";
+	echo "EXIT: You are not on a branch";
+	exit 1;
 fi;
-deploy="# $(basename "$repo") $branch";
+
+if [ "$#" -ge 1 ]; then
+	ticket=$1;
+else
+	ticket=$branch;
+fi;
+
+deploy="# $(basename "$repo") (branch: $branch)";
 nl="
 ";
 if [ ${repo:0:15} == "sql_deployments" ]; then
@@ -17,5 +38,15 @@ elif [ ${repo} == "server_configs" ]; then
 else
 	deploy="$deploy${nl}cd /var/www/html/announcemedia/$repo;${nl}sudo gitswitch $(git rev-parse HEAD);";
 fi;
+
+#echo "DBG :: ticket: $ticket branch: $branch; repo: $repo; deploy: $deploy";
+
 echo "$deploy" | pbcopy;
-printf "${deploy}\n";
+echo "Copied deploy instructions to clipboard";
+
+if hash kathy-cli 2>/dev/null ; then
+	#echo "EXEC: kathy-cli jira instrs $ticket $repo \$deploy";
+	echo "$deploy" | kathy-cli jira instrs $ticket $repo;
+else
+	echo "Unable to find kathy-cli; I can update the ticket for you if provided."
+fi

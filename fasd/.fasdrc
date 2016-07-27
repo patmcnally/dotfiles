@@ -1,3 +1,2 @@
-_FASD_BACKENDS="viminfo"
 _FASD_SINK="$HOME/.fasd.log"
 _FASD_AWK="gawk"

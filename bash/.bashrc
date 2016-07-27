@@ -3,7 +3,7 @@ source ~/.bashrc.d/.git-alias-completion.sh
 source ~/.bashrc.d/.git-prompt.sh
 source ~/.bashrc.d/.functions
 
-export PATH=$PATH:$HOME/bin
+export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:$HOME/bin
 export CLICOLOR=1
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export TERM=xterm-color
@@ -14,7 +14,6 @@ export DISPLAY=:0.0
 
 # Aliases
 alias ls="ls -G"
-
 
 function color_my_prompt {
     # Define some colors for use to use

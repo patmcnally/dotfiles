@@ -14,6 +14,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'elzr/vim-json', { 'for':  'json' }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-ruby/vim-ruby'
 " Add plugins to &runtimepath
 call plug#end()
 
