@@ -8,24 +8,6 @@ set modelines=0
 " Over ride <leader> key
 let mapleader = ","
 
-" =============== Pathogen Initialization ===============
-" This loads all the plugins in ~/.vim/bundle
-" Use tpope's pathogen plugin to manage all other plugins
-
-  runtime bundle/tpope-vim-pathogen/autoload/pathogen.vim
-  call pathogen#infect()
-  call pathogen#helptags()
-
-" === Vundle ==="
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'joonty/vim-phpunitqf.git'
-Bundle 'bling/vim-airline'
-
 " ================ General Config ====================
 
 set number                      "Line numbers are good
@@ -118,10 +100,6 @@ set scrolloff=4         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-for f in split(glob('~/.vim/plugin/settings/*.vim'), '\n')
-  exe 'source' f
-endfor
-
 " =============== NERDtree Customizations ============
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
@@ -129,11 +107,6 @@ let NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 36
 let NERDTreeIgnore = ['\.git$']
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
-
-" =============== fugitive.git
-" For fugitive.git, dp means :diffput. Define dg to mean :diffget
-nnoremap <silent> <leader>dg :diffget<CR>
-nnoremap <silent> <leader>dp :diffput<CR>
 
 
 
@@ -375,45 +348,11 @@ nnoremap ` '
 nmap <Leader>g :Ack
 
 
-" ============================
-" File type for Salt State Files
-" ============================
-au BufRead,BufNewFile *.sls set filetype=yaml
-
-" ============================
-" Tidy for JSON
-" ============================
-au BufRead,BufNewFile *.json set filetype=json foldmethod=syntax
-au FileType json command! -range=% -nargs=* Tidy <line1>,<line2>! json_xs -f json -t json-pretty
-
-" ============================
-" Tabularize - alignment
-" ============================
-" Hit Cmd-Shift-A then type a character you want to align by
-nmap <Leader>a :Tabularize /
-vmap <Leader>a :Tabularize /
-
-" ============================
-" SplitJoin plugin
-" ============================
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
-
 "=============================
 " Scratch plugin
 "=============================
 
 nmap <Leader>r :Scratch
-
-"=============================
-" Ctrlp Config
-"=============================
-
-" We don't want to use Ctrl-p as the mapping because
-" it interferes with YankRing (paste, then hit ctrl-p)
-let g:ctrlp_map = ',p'
-nmap <Leader>p :CtrlPMixed<CR>
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " ============================
 " Strip Trailing Whitespaces
@@ -478,35 +417,6 @@ endfunction
 
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 
-" Stolen from Steve Losh
-" https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
-"
-" Motion for "next/last object". For example, "din(" would go to the next "()"
-" pair and delete its contents.
-onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-
-onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-
-function! s:NextTextObject(motion, dir)
-  let c = nr2char(getchar())
-
-  if c ==# "b"
-      let c = "("
-  elseif c ==# "B"
-      let c = "{"
-  elseif c ==# "d"
-      let c = "["
-  endif
-
-  exe "normal! ".a:dir.c."v".a:motion.c
-endfunction
-
 
 " Writing Mode
 func! WordProcessorMode()
@@ -522,59 +432,6 @@ func! WordProcessorMode()
 endfu
 com! WP call WordProcessorMode()
 
-" Marked.app used for Markdown
-nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
-
-" ==============================
-" Ruby
-" ==============================
-" let g:ruby_path = system('echo $HOME/.rbenv/shims')
-
-" ==============================
-" Airline
-" ==============================
-let g:airline_powerline_fonts = 1
-
-" ==============================
-" Nimrod
-" ==============================
-fun! JumpToDef()
-  if exists("*GotoDefinition_" . &filetype)
-    call GotoDefinition_{&filetype}()
-  else
-    exe "norm! \<C-]>"
-  endif
-endf
-
-" Jump to tag
-nn [<C-D> :call JumpToDef()<cr>
-ino [<C-D> <esc>:call JumpToDef()<cr>i
-" ==============================
-" END Nimrod
-" ==============================
-
-
-
-" ==============================
-" TagList
-" ==============================
-nnoremap <leader>y :TagbarToggle<CR>
-let g:tagbar_type_javascript = { 'ctagsbin' : '/usr/local/bin/jsctags'  }
-
-" set the names of flags
-let tlist_php_settings = 'php;c:class;f:function;d:constant'
-" close all folds except for current file
-let Tlist_File_Fold_Auto_Close = 1
-" make tlist pane active when opened
-let Tlist_GainFocus_On_ToggleOpen = 1
-" width of window
-let Tlist_WinWidth = 40
-" ==============================
-" END TagList
-" ==============================
-
-
-
 " End Matter
 
 " Disable the scrollbars (NERDTree)
@@ -588,10 +445,7 @@ let g:vimclojure#HighlightBuiltins = 1
 let g:vimclojure#ParenRainbow = 1
 let vimclojure#WantNailgun = 0
 
-" The Answers tabs
 set list listchars=tab:→\ ,trail:·
-
-set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline
 
 colorscheme base16-monokai
 set background=dark
