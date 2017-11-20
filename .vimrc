@@ -2,6 +2,21 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+call plug#begin('~/.vim/plugged')
+Plug 'captbaritone/molokai'
+Plug 'scrooloose/nerdtree'
+" Change brackets and quotes
+Plug 'tpope/vim-surround'
+
+" Make vim-surround repeatable with .
+Plug 'tpope/vim-repeat'
+Plug 'python-mode/python-mode'
+
+filetype plugin indent on                   " required!
+call plug#end()
+
+
+
 " prevent some security exploits having to do with modelines in files
 set modelines=0
 
