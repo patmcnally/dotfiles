@@ -46,4 +46,4 @@ function color_my_prompt {
     export PROMPT_COMMAND="__git_ps1 \"$__base_prompt\" \"\\\$ \" \"$__git_prompt_fmt\""
 }
 color_my_prompt
-
+alias ssh_ml="ssh -i ~/.ssh/ml-dev.pem ec2-user@10.192.10.27"

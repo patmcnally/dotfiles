@@ -4,6 +4,10 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 Plug 'captbaritone/molokai'
+Plug 'dunckr/vim-monokai-soda'
+Plug 'chriskempson/base16-vim'
+
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 " Change brackets and quotes
 Plug 'tpope/vim-surround'
