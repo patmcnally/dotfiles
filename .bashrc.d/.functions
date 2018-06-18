@@ -1,6 +1,6 @@
 # markdown and show in browser
 function md() {
-  pandoc --from markdown+definition_lists --to html --standalone $1 | bcat
+  pandoc --from markdown_github --to html --standalone $1 | bcat
 }
 
 function markdown(){
@@ -14,6 +14,14 @@ function phpcs_a(){
 # Search recursively for a pattern
 function grepr(){
     grep -Fr $1 *
+}
+
+function curl-redirects(){
+	curl -v -L $1 2>&1 | egrep "^(> (Host:|GET)|< HTTP/|\* Connected)"
+}
+
+function curl-headers(){
+	curl -v -L -s $1 1> /dev/null
 }
 
 # Use Git’s colored diff when available
@@ -52,9 +60,9 @@ function gurl() {
 # Syntax-highlight JSON strings or files
 function json() {
   # check to see if pygments is installed
-  local _pipes="" 
+  local _pipes=""
   if hash pygmentize 2>/dev/null; then
-    local _pipes="| pygmentize -l json | less -R" 
+    local _pipes="| pygmentize -l json | less -R"
   else
     echo "install Pygments and pygments-json for colorized output"
   fi

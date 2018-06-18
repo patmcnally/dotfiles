@@ -19,6 +19,7 @@ branchdate = "for k in `git branch | perl -pe s/^..//`; do echo -e `git show --p
   d = diff
   # list aliases
   la = "!git config -l | grep alias | cut -c 7-"
+	up = pull --rebase --autostash
 
 [color]
   branch = auto

@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'captbaritone/molokai'
 Plug 'dunckr/vim-monokai-soda'
 Plug 'chriskempson/base16-vim'
-
+Plug 'mtth/scratch.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 " Change brackets and quotes
@@ -468,3 +468,4 @@ set list listchars=tab:→\ ,trail:·
 
 colorscheme base16-monokai
 set background=dark
+set termguicolors
