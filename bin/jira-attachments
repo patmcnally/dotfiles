@@ -12,7 +12,6 @@
 #      username = "username"
 #      password = "password"
 
-~/.config/jira-scripts
 from jira import JIRA
 import toml
 import re

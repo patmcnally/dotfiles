@@ -9,6 +9,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'mtth/scratch.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
+Plug 'patmcnally/sqlplus.vim'
+Plug 'godlygeek/tabular'
 " Change brackets and quotes
 Plug 'tpope/vim-surround'
 

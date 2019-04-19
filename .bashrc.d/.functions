@@ -7,6 +7,10 @@ function markdown(){
   pandoc --from markdown --to html --standalone $1
 }
 
+function mdv(){
+  pandoc $1 | w3m -T text/html
+}
+
 function phpcs_a(){
   phpcs --extensions=php --standard=/var/www/html/announcemedia/dev_tools/php_codesniffer/Standards/Answers $1
 }

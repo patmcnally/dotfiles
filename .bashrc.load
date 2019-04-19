@@ -15,7 +15,7 @@ export DISPLAY=:0.0
 # Aliases
 alias ls="ls -G"
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 function color_my_prompt {
     # Define some colors for use to use
@@ -46,7 +46,15 @@ function color_my_prompt {
     export PROMPT_COMMAND="__git_ps1 \"$__base_prompt\" \"\\\$ \" \"$__git_prompt_fmt\""
 }
 color_my_prompt
-alias ssh_ml="ssh -i ~/.ssh/ml-dev.pem ec2-user@10.192.10.27"
-alias ssh_qa01='ssh rx-qal-web01.ut1'
 
+#Go
+export GOPATH=$HOME/projects/go # don't forget to change your path correctly!
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+#Pyenv
 eval "$(fasd --init auto)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
