@@ -8,6 +8,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 " Change brackets and quotes
 Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+
 
 " Make vim-surround repeatable with .
 Plug 'tpope/vim-repeat'
@@ -65,10 +67,22 @@ filetype indent on
 "set autoindent
 set cindent
 
+" ==============================
+" Setting Arrow Keys to Resize Panes
+" ==============================
+nnoremap <Left> :vertical resize -1<CR>
+nnoremap <Right> :vertical resize +1<CR>
+nnoremap <Up> :resize -1<CR>
+nnoremap <Down> :resize +1<CR>
 
+" Disable arrow keys completely in Insert Mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 " ==============================
-" Window/Tab/Split Manipulation
+" window/tab/split manipulation
 " ==============================
 " Move between split windows by using the four directions H, L, I, N
 " (note that  I use I and N instead of J and K because  J already does
@@ -83,6 +97,10 @@ nnoremap <silent> <C-j> <C-w>j
 " this to vv and ss
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
+
+"CtrlP Config
+nnoremap <Leader>p :CtrlP<CR>
+nnoremap <Leader>t :CtrlP<CR>
 
 
 " Writing Mode

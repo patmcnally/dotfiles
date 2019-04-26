@@ -1,0 +1,7 @@
+[options]
+server = "https://jira.centene.com"
+verify = false
+
+[basic_auth]
+username = "cn171494"
+password = "9u9MurphYpup00"
